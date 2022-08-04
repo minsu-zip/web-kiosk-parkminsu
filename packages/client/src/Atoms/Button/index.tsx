@@ -2,14 +2,14 @@ import React, { CSSProperties } from 'react'
 import { theme } from '../../styles/index'
 import styled from '@emotion/styled'
 
-interface Props {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   style?: CSSProperties
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
   children?: React.ReactNode
 }
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<ButtonProps> = ({
   disabled = false,
   style,
   onClick,

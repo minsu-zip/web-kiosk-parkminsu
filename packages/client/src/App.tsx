@@ -9,7 +9,6 @@ const App = () => {
 
   const getData = async () => {
     const data = await getAllInfo()
-    console.log(data)
     setInit(data)
   }
 

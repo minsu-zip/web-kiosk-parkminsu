@@ -7,7 +7,7 @@ export class AppService {
       categories: [
         {
           id: 1,
-          name: '프로틴',
+          name: '단백질 보충제',
           menus: [
             {
               id: 1,
@@ -98,6 +98,18 @@ export class AppService {
               ],
             },
           ],
+        },
+        {
+          id: 2,
+          name: '간식&식품',
+        },
+        {
+          id: 3,
+          name: '비타민',
+        },
+        {
+          id: 4,
+          name: '아미노산',
         },
       ],
     }

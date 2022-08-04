@@ -30,8 +30,24 @@ export class AppService {
                     },
                     {
                       id: 2,
-                      name: '딸기 맛',
-                      price: 500,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
                     },
                   ],
                 },
@@ -58,8 +74,24 @@ export class AppService {
                     },
                     {
                       id: 2,
-                      name: '딸기 맛',
-                      price: 500,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
                     },
                   ],
                 },

@@ -12,7 +12,7 @@ export class MySqlConfigService implements TypeOrmOptionsFactory {
       host: this.configService.get<string>('MYSQL_HOST'),
       username: this.configService.get<string>('MYSQL_USER'),
       password: this.configService.get<string>('MYSQL_PW'),
-      port: +this.configService.get<number>('NYSQL_PORT'),
+      port: +this.configService.get<number>('MYSQL_PORT'),
       database: this.configService.get<string>('MYSQL_DB'),
       entities: ['dist/**/**/*.entity{.ts,.js}'],
       synchronize: true,

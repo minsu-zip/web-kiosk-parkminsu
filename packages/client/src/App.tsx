@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { theme } from './styles'
 import GlobalStyle from './styles/GlobalStyles'
 import { getAllInfo } from './apis/kiosk'
+import Tab from 'atoms/Tab'
+import styled from '@emotion/styled'
 
 const App = () => {
-  const [init, setInit] = useState<any>()
+  const [kioskData, setKioskData] = useState<any>()
 
-  const getData = async () => {
-    const data = await getAllInfo()
-    setInit(data)
-  }
+  const getData = useCallback(async () => {
+    const { categories } = await getAllInfo()
+    setKioskData(categories)
+  }, [])
 
   useEffect(() => {
     getData()
@@ -19,10 +21,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {init ? (
-        <div className="App">{init.categories[0].name}</div>
+
+      {kioskData ? (
+        <div className="App">
+          <Tab kioskData={kioskData}></Tab>
+        </div>
       ) : (
-        <div>loading</div>
+        <div>로딩중</div>
       )}
     </ThemeProvider>
   )

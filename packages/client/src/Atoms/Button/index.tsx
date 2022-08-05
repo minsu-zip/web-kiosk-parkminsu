@@ -14,10 +14,15 @@ const Button: React.FC<ButtonProps> = ({
   style,
   onClick,
   children,
+  ...props
 }) => {
   return (
     <>
-      <EButton disabled={disabled} onClick={onClick} style={{ ...style }}>
+      <EButton
+        disabled={disabled}
+        onClick={onClick}
+        style={{ ...style }}
+        {...props}>
         {children}
       </EButton>
     </>
@@ -25,11 +30,23 @@ const Button: React.FC<ButtonProps> = ({
 }
 
 const EButton = styled.button`
-  cursor: pointer;
-  background-color: ${theme.PRIMARY1};
-  width: 233px;
-  height: 164px;
+  min-width: 240px;
+  height: 100px;
+  font-size: 32px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.2s;
   border-radius: 20px;
+  &:active {
+    filter: brightness(80%);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    color: ${({ theme }) => theme.OFF_WHITE};
+    background-color: ${({ theme }) => theme.PRIMARY1};
+  }
 `
 
 export default Button

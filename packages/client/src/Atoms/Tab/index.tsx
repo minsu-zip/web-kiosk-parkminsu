@@ -1,42 +1,42 @@
-import { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import Button from 'atoms/Button'
-import TabItem from './TabItem'
+import { theme } from '../../styles/index'
 
-const Tab = ({ kioskData }: any) => {
-  const [category, setCategory] = useState(kioskData)
-  const [selected, setSelected] = useState(1)
-  const [test, setTest] = useState()
+interface ActiveProps {
+  active: boolean
+}
+interface TabWrapperProps extends ActiveProps {
+  id: number
+  category: string
+  onClickCategory(id: number): void
+}
 
-  const onClickCategory = (id: number) => {
-    setSelected(id)
-    setTest(category[id - 1])
-  }
-
+const Tab: React.FC<TabWrapperProps> = ({
+  id,
+  category,
+  onClickCategory,
+  active,
+  ...props
+}) => {
   return (
     <>
-      <Wrapper>
-        {category?.map((category: any) => (
-          <Button
-            key={category.id}
-            onClick={() => onClickCategory(category.id)}
-            style={{ backgroundColor: 'white', height: '5rem' }}>
-            {category.name}
-          </Button>
-        ))}
-      </Wrapper>
-
-      <TabItem title={test}></TabItem>
+      <TabWrapper active={active}>
+        <Button
+          style={{ backgroundColor: 'white', height: '80px' }}
+          onClick={() => onClickCategory(id)}
+          {...props}>
+          {category}
+        </Button>
+      </TabWrapper>
     </>
   )
 }
 
-const Wrapper = styled.div`
-  /* margin-top: 30px;
-  display: flex;
-  justify-items: center;
-  justify-content: space-around;
-  border: 1px solid black; */
+const TabWrapper = styled.div`
+  border-bottom: solid 3px
+    ${({ active }: ActiveProps) =>
+      active ? `${theme.TITLE_ACTIVE}` : `${theme.LINE}`};
 `
 
 export default Tab

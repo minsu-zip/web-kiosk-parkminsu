@@ -12,6 +12,10 @@ const GlobalStyle = () => (
         margin: 0;
         font-size: 16px;
         user-select: none;
+        max-width: 1080px;
+        width: 100%;
+        height: 1920px;
+        margin: 0 auto;
       }
       h1,
       h2,

@@ -7,7 +7,7 @@ export class AppService {
       categories: [
         {
           id: 1,
-          name: '프로틴',
+          name: '단백질 보충제',
           menus: [
             {
               id: 1,
@@ -30,8 +30,24 @@ export class AppService {
                     },
                     {
                       id: 2,
-                      name: '딸기 맛',
-                      price: 500,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
                     },
                   ],
                 },
@@ -58,14 +74,132 @@ export class AppService {
                     },
                     {
                       id: 2,
-                      name: '딸기 맛',
-                      price: 500,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
                     },
                   ],
                 },
               ],
             },
           ],
+        },
+        {
+          id: 2,
+          name: '간식&식품',
+        },
+        {
+          id: 3,
+          name: '비타민',
+          menus: [
+            {
+              id: 1,
+              name: 'jlkjkljkljl',
+              imgUrl1:
+                'https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-1224889444460882.jpg',
+              imgUrl2:
+                'https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-4134889444511789.jpg',
+              price: 20000,
+              sellCount: 4,
+              options: [
+                {
+                  id: 1,
+                  name: '맛',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '초코 맛',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 2,
+              name: 'kljkljkljklllkj',
+              imgUrl1:
+                'https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg',
+              imgUrl2:
+                'https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg',
+              price: 35000,
+              sellCount: 2,
+              options: [
+                {
+                  id: 1,
+                  name: '맛',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '초코 맛',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '초코브라우니 맛',
+                      price: 1000,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  name: '사이즈',
+                  detail: [
+                    {
+                      id: 1,
+                      name: '5 kg',
+                      price: 0,
+                    },
+                    {
+                      id: 2,
+                      name: '10 kg',
+                      price: 15000,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 4,
+          name: '아미노산',
         },
       ],
     }

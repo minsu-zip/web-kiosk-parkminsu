@@ -39,4 +39,4 @@ const TabWrapper = styled.div`
       active ? `${theme.TITLE_ACTIVE}` : `${theme.LINE}`};
 `
 
-export default Tab
+export default React.memo(Tab)

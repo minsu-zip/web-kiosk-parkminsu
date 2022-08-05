@@ -6,7 +6,12 @@
   },
 
   // npm을 통해 설치한 외부 ESLint 설정 등록 (eslint-config-{name}으로 설치)
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
 
   // ESLint에 지원할 JavaScript 옵션 설정
   "parserOptions": {

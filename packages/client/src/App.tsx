@@ -6,22 +6,21 @@ import { getAllInfo } from './apis/kiosk'
 import Tab from 'atoms/Tab'
 import styled from '@emotion/styled'
 import TabItem from 'atoms/Tab/TabItem'
+import React from 'react'
 
 const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
   const [kioskData, setKioskData] = useState<any>()
-  const [selected, setSelected] = useState<number>()
-  const [menuList, setMenuList] = useState<any>()
+  const [selected, setSelected] = useState<number>(1)
 
-  const getData = useCallback(async () => {
+  const getData = async () => {
     const { categories } = await getAllInfo()
     setKioskData(categories)
-  }, [kioskData])
-
-  const onClickCategory = (id: number) => {
-    setSelected(id)
-    setMenuList(kioskData[id - 1])
   }
+
+  const onClickCategory = useCallback((id: number) => {
+    setSelected(id)
+  }, [])
 
   useEffect(() => {
     getData()
@@ -35,7 +34,7 @@ const App = () => {
           {kioskData ? (
             kioskData.map(({ id, name }: any) => (
               <Tab
-                key={`${id}${name}`}
+                key={id}
                 id={id}
                 category={name}
                 active={selected === id}
@@ -47,7 +46,7 @@ const App = () => {
           )}
         </Wrapper>
 
-        {menuList?.menus?.map(({ id, name }: any) => (
+        {kioskData?.[selected - 1]?.menus?.map(({ id, name }: any) => (
           <TabItem key={id} id={id} title={name}></TabItem>
         ))}
       </div>

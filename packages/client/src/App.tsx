@@ -12,6 +12,7 @@ const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
   const [kioskData, setKioskData] = useState<TCategory[] | undefined>(undefined)
   const [selected, setSelected] = useState<number>(1)
+  const [selectedMenuId, setSelectedMenuId] = useState<number | undefined>()
 
   const getData = async () => {
     const data = await getAllInfo()
@@ -22,6 +23,11 @@ const App = () => {
     setSelected(id)
   }, [])
 
+  const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const { id } = (e.target as HTMLElement).dataset
+    setSelectedMenuId(Number(id))
+  }, [])
+
   useEffect(() => {
     getData()
   }, [])
@@ -30,7 +36,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <div className="App">
-        <Wrapper>
+        <TabWrapper>
           {kioskData ? (
             kioskData.length ? (
               kioskData.map(({ id, name }) => (
@@ -48,21 +54,31 @@ const App = () => {
           ) : (
             <div>로딩중</div>
           )}
-        </Wrapper>
+        </TabWrapper>
 
-        {kioskData?.[selected - 1]?.menus?.map(({ id, name }) => (
-          <TabItem key={id} id={id} title={name}></TabItem>
-        ))}
+        <TabItemWrapper>
+          {kioskData?.[selected - 1]?.menus?.map((menu, index) => (
+            <TabItem
+              key={menu.id}
+              menu={menu}
+              onClickMenu={onClickMenu}
+              rank={index}></TabItem>
+          ))}
+        </TabItemWrapper>
       </div>
     </ThemeProvider>
   )
 }
 
-const Wrapper = styled.div`
+const TabWrapper = styled.div`
   margin-top: 30px;
   display: flex;
   justify-items: center;
   justify-content: space-around;
 `
-
+const TabItemWrapper = styled.div`
+  display: flex;
+  justify-items: flex-start;
+  flex-wrap: wrap;
+`
 export default App

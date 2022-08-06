@@ -19,9 +19,13 @@ const App = () => {
     setKioskData(data)
   }
 
-  const onClickCategory = useCallback((id: number) => {
-    setSelected(id)
-  }, [])
+  const onClickCategory = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const { id } = (e.target as HTMLElement).dataset
+      setSelected(Number(id))
+    },
+    [],
+  )
 
   const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const { id } = (e.target as HTMLElement).dataset

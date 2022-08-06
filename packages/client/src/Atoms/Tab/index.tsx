@@ -9,7 +9,7 @@ interface ActiveProps {
 interface TabWrapperProps extends ActiveProps {
   id: number
   category: string
-  onClickCategory(id: number): void
+  onClickCategory(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
 const Tab: React.FC<TabWrapperProps> = ({
@@ -24,7 +24,7 @@ const Tab: React.FC<TabWrapperProps> = ({
       <TabWrapper active={active}>
         <Button
           style={{ backgroundColor: 'white', height: '80px' }}
-          onClick={() => onClickCategory(id)}
+          onClick={onClickCategory}
           {...props}>
           {category}
         </Button>

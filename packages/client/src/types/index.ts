@@ -13,7 +13,7 @@ interface TMenuOption extends TBase {
 
 interface TMenu extends TBase {
   imgUrl1: string
-  imgUrl2?: string
+  imgUrl2: string
   price: number
   sellCount: number
   options: TMenuOption[]

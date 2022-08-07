@@ -10,7 +10,7 @@ import { TCategory } from 'types'
 
 const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
-  const [kioskData, setKioskData] = useState<TCategory[] | undefined>(undefined)
+  const [kioskData, setKioskData] = useState<TCategory[]>()
   const [selected, setSelected] = useState<number>(1)
 
   const getData = async () => {

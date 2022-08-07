@@ -15,11 +15,10 @@ const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
   return (
     <TabItemWrapper data-id={id} onClick={onClickMenu}>
       <RankSpan>{rank + 1}위</RankSpan>
-      <Img
-        src={imgUrl1}
-        onMouseOver={(e) => (e.currentTarget.src = imgUrl2)}
-        onMouseOut={(e) => (e.currentTarget.src = imgUrl1)}
-      />
+      <ImgWrapper>
+        <Img className={imgUrl2 ? 'first' : ''} src={imgUrl1} />
+        <Img src={imgUrl2} />
+      </ImgWrapper>
       <Span>{name}</Span>
       <Span>{price}</Span>
     </TabItemWrapper>
@@ -30,6 +29,7 @@ const RankSpan = styled.span`
   position: absolute;
   right: 0;
   top: 0px;
+  z-index: 2;
   font-size: x-large;
   padding: 4px 8px;
   background-color: rgba(255, 0, 0, 50%);
@@ -51,9 +51,24 @@ const TabItemWrapper = styled.div`
   position: relative;
 `
 
+const ImgWrapper = styled.div`
+  width: 300px;
+  height: 300px;
+  position: relative;
+  &:hover {
+    & .first {
+      display: none;
+    }
+  }
+`
+
 const Img = styled.img`
-  width: 100%;
-  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &.first {
+    z-index: 1;
+  }
 `
 
 export default React.memo(TabItem)

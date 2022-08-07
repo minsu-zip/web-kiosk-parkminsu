@@ -35,8 +35,8 @@ interface Props {
 
 const Modal: React.FC<Props> = ({
   children,
-  width = 500,
-  height = 300,
+  width = 900,
+  height = 800,
   visible = false,
   onClose,
   style,

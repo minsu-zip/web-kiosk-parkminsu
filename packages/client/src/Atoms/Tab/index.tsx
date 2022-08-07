@@ -23,6 +23,7 @@ const Tab: React.FC<TabWrapperProps> = ({
     <>
       <TabWrapper active={active}>
         <Button
+          data-id={id}
           style={{ backgroundColor: 'white', height: '80px' }}
           onClick={onClickCategory}
           {...props}>

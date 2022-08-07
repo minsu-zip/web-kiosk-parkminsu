@@ -1,4 +1,3 @@
-import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useState } from 'react'
 import { TMenu } from 'types'
@@ -6,7 +5,7 @@ import { TMenu } from 'types'
 interface TProps {
   menu: TMenu
   onClickMenu(event: React.MouseEvent<HTMLDivElement>): void
-  rank: number
+  rank?: number
 }
 
 const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
@@ -17,7 +16,7 @@ const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
   return (
     <>
       <TabItemWrapper data-id={id} onClick={onClickMenu}>
-        <RankSpan>{rank + 1}위</RankSpan>
+        {rank !== undefined ? <RankSpan>{rank + 1}위</RankSpan> : null}
         <Img src={imgUrl1} imgUrl2={imgUrl2}></Img>
         <Span>{name}</Span>
         <Span>{price.toLocaleString()}원</Span>

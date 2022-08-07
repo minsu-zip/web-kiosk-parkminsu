@@ -3,16 +3,18 @@ import { ThemeProvider } from '@emotion/react'
 import { theme } from './styles'
 import GlobalStyle from './styles/GlobalStyles'
 import { getAllInfo } from './apis/kiosk'
-import Tab from 'atoms/Tab'
-import styled from '@emotion/styled'
-import TabItem from 'atoms/Tab/TabItem'
-import { TCategory } from 'types'
+import { TCategory, TMenu } from 'types'
+import Modal from 'atoms/Modal'
+import Header from './components/Header'
+import Page from 'components/Page'
 
 const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
   const [kioskData, setKioskData] = useState<TCategory[]>()
   const [selected, setSelected] = useState<number>(1)
   const [selectedMenuId, setSelectedMenuId] = useState<number | undefined>()
+  const [selectedMenu, setSelectedMenu] = useState<TMenu>()
+  const [visible, setVisible] = useState(false)
 
   const getData = async () => {
     const data = await getAllInfo()
@@ -27,62 +29,47 @@ const App = () => {
     [],
   )
 
-  const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const { id } = (e.target as HTMLElement).dataset
-    setSelectedMenuId(Number(id))
-  }, [])
+  const onClickMenu = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const { id } = (e.currentTarget as HTMLElement).dataset
+      setSelectedMenuId(Number(id))
+      const menu = kioskData?.[selected - 1]?.menus.find(
+        (item) => item.id === Number(id),
+      )
+      setSelectedMenu(menu)
+      setVisible(true)
+    },
+    [kioskData, selected],
+  )
 
   useEffect(() => {
     getData()
   }, [])
 
+  // useEffect(() => {
+  //   return
+  //   /setSelectedMenu
+  // }, [selectedMenuId])
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <div className="App">
-        <TabWrapper>
-          {kioskData ? (
-            kioskData.length ? (
-              kioskData.map(({ id, name }) => (
-                <Tab
-                  key={id}
-                  id={id}
-                  category={name}
-                  active={selected === id}
-                  onClickCategory={onClickCategory}
-                />
-              ))
-            ) : (
-              <div>데이터가 없습니다.</div>
-            )
-          ) : (
-            <div>로딩중</div>
-          )}
-        </TabWrapper>
+        <Header
+          categories={kioskData}
+          selected={selected}
+          onClickCategory={onClickCategory}></Header>
 
-        <TabItemWrapper>
-          {kioskData?.[selected - 1]?.menus?.map((menu, index) => (
-            <TabItem
-              key={menu.id}
-              menu={menu}
-              onClickMenu={onClickMenu}
-              rank={index}></TabItem>
-          ))}
-        </TabItemWrapper>
+        <Page
+          menus={kioskData?.[selected - 1].menus}
+          onClickMenu={onClickMenu}></Page>
       </div>
+      <Modal visible={visible} onClose={() => setVisible(false)}>
+        <div></div>
+        {/* <button onClick={() => setVisible(false)}>Close</button> */}
+      </Modal>
     </ThemeProvider>
   )
 }
 
-const TabWrapper = styled.div`
-  margin-top: 30px;
-  display: flex;
-  justify-items: center;
-  justify-content: space-around;
-`
-const TabItemWrapper = styled.div`
-  display: flex;
-  justify-items: flex-start;
-  flex-wrap: wrap;
-`
 export default App

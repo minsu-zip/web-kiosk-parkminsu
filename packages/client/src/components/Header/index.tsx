@@ -2,6 +2,7 @@ import { TCategory } from '../../types'
 import Tab from '../../atoms/Tab'
 import styled from '@emotion/styled'
 import Spinner from '../../atoms/Spinner'
+import IconLogo from '../../images/logo.svg'
 
 interface Props {
   categories?: TCategory[]
@@ -12,6 +13,9 @@ interface Props {
 const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
   return (
     <>
+      <HeaderWrapper>
+        <h1>개발자 건강 지킴이</h1>
+      </HeaderWrapper>
       <TabWrapper>
         {categories ? (
           categories.length ? (
@@ -35,6 +39,12 @@ const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
   )
 }
 
+const HeaderWrapper = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`
 const TabWrapper = styled.div`
   margin-top: 30px;
   display: flex;

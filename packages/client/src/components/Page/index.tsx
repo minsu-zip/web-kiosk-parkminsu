@@ -1,5 +1,5 @@
 import { TMenu } from 'types'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import TabItem from '../../atoms/Tab/TabItem'
 import styled from '@emotion/styled'
 import Modal from 'atoms/Modal'
@@ -17,23 +17,34 @@ const Page: React.FC<Props> = ({ menus }) => {
   const [selectedMenuId, setSelectedMenuId] = useState<number>()
   const [selectedMenu, setSelectedMenu] = useState<TMenu>()
   const [visible, setVisible] = useState(false)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
-  const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const { id } = (e.currentTarget as HTMLElement).dataset
-    setSelectedMenuId(Number(id))
-    const menu = menus.find((item) => item.id === Number(id))
-    setSelectedMenu(menu)
-    setVisible(true)
-  }, [])
+  const onClickMenu = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const { id } = (e.currentTarget as HTMLElement).dataset
+      setSelectedMenuId(Number(id))
+      const menu = menus.find((item) => item.id === Number(id))
+      setSelectedMenu(menu)
+      setVisible(true)
+    },
+    [menus],
+  )
 
   const onIncreaseCount = useCallback(() => {
+    if (count >= 10) return
+
     setCount((count) => count + 1)
-  }, [])
+  }, [count])
 
   const onDecreaseCount = useCallback(() => {
+    if (count <= 1) return
+
     setCount((count) => count - 1)
-  }, [])
+  }, [count])
+
+  const totalPrice = useMemo(() => {
+    return selectedMenu?.price ? selectedMenu.price * count : 0
+  }, [selectedMenu, count])
 
   return (
     <>
@@ -57,7 +68,6 @@ const Page: React.FC<Props> = ({ menus }) => {
                   menu={selectedMenu}
                   onClickMenu={onClickMenu}
                 />
-
                 <MenuOption options={selectedMenu.options} />
               </>
             ) : null}
@@ -74,7 +84,7 @@ const Page: React.FC<Props> = ({ menus }) => {
               }}>
               <img src={IconPlus} />
             </Button>
-            <Span>{count} 개</Span>
+            <Span>{count < 10 ? count : '최대 10'} 개</Span>
             <Button
               onClick={onDecreaseCount}
               style={{
@@ -93,7 +103,7 @@ const Page: React.FC<Props> = ({ menus }) => {
             justifyContent: 'center',
             marginTop: '100px',
           }}>
-          <Button style={{ width: '300px' }}>400원 담기</Button>
+          <Button style={{ width: '300px' }}>{totalPrice} 담기</Button>
         </div>
         {/* <button onClick={() => setVisible(false)}>Close</button> */}
       </Modal>
@@ -118,7 +128,7 @@ const TabItemWrapper = styled.div`
 
 const Span = styled.span`
   font-size: 30px;
-  width: 120px;
+  width: 150px;
   text-align: center;
 `
 const CheckBox = styled.div`

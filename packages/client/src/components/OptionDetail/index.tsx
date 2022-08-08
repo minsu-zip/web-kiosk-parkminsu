@@ -8,36 +8,36 @@ interface Props {
   option: TOptionDetail
   selectedOption: { optionId: number; detailId: number }
   onClickSelectedOption(id: number): void
+  index: number
 }
 
 const OptionDetail: React.FC<Props> = ({
   option,
   selectedOption,
   onClickSelectedOption,
+  index,
 }) => {
-  const [toggle, setToggle] = useState(selectedOption)
-  const [soption, setSoption] = useState(0)
-
-  const ClickSelectedOption = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const { id } = (e.currentTarget as HTMLElement).dataset
-      console.log(id)
-      setSoption(Number(id))
-    },
-    [selectedOption],
-  )
-
   const { id, name, price } = option
+
+  console.log(selectedOption.detailId)
 
   return (
     <>
       <OptionWrapper>
-        <Div onClick={() => onClickSelectedOption(id)}>
-          <img
-            src={selectedOption.detailId === id ? IconChecked : IconUnchecked}
-            alt={name}
-          />
-        </Div>
+        {selectedOption.detailId === 0 ? (
+          <>
+            <Div onClick={() => onClickSelectedOption(id)}>
+              <img src={index === 0 ? IconChecked : IconUnchecked} alt={name} />
+            </Div>
+          </>
+        ) : (
+          <Div onClick={() => onClickSelectedOption(id)}>
+            <img
+              src={selectedOption.detailId === id ? IconChecked : IconUnchecked}
+              alt={name}
+            />
+          </Div>
+        )}
 
         <Div>{name}</Div>
         <Div>{price.toLocaleString()}원</Div>

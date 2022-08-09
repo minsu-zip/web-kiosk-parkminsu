@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, Unique, Repository } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
 import { OptionDetail } from './optionDetail.entity'
 import { CommonEntity } from '@common/CommonEntity'
 

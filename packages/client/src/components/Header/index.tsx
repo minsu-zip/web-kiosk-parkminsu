@@ -14,7 +14,7 @@ const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
   return (
     <>
       <HeaderWrapper>
-        <h1>개발자 건강 지킴이</h1>
+        <h1>민수의 헬스 키오스크</h1>
       </HeaderWrapper>
       <TabWrapper>
         {categories ? (

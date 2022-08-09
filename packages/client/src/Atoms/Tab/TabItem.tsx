@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import React, { useState } from 'react'
+import { theme } from '../../styles'
 import { TMenu } from 'types'
 
 interface TProps {
@@ -57,6 +58,9 @@ const Img = styled.img<{ imgUrl2: string }>`
   &:hover {
     content: ${({ imgUrl2 }) => `url(${imgUrl2})`};
   }
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px 4px ${theme.LINE};
+  margin-bottom: 10px;
 `
 
 export default React.memo(TabItem)

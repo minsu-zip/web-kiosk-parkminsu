@@ -10,25 +10,29 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
+  if (!categories) {
+    return (
+      <TabWrapper>
+        <Spinner />
+      </TabWrapper>
+    )
+  }
+
   return (
     <>
       <TabWrapper>
-        {categories ? (
-          categories.length ? (
-            categories.map(({ id, name }) => (
-              <Tab
-                key={id}
-                id={id}
-                category={name}
-                active={selected === id}
-                onClickCategory={onClickCategory}
-              />
-            ))
-          ) : (
-            <div>데이터가 없습니다.</div>
-          )
+        {categories.length ? (
+          categories.map(({ id, name }) => (
+            <Tab
+              key={id}
+              id={id}
+              category={name}
+              active={selected === id}
+              onClickCategory={onClickCategory}
+            />
+          ))
         ) : (
-          <Spinner />
+          <h1>데이터가 없습니다.</h1>
         )}
       </TabWrapper>
     </>

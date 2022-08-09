@@ -9,11 +9,11 @@ export class OptionsService {
     @InjectRepository(Option) private optionRepository: Repository<Option>,
   ) {}
 
-  findAll() {
+  findAll(): Promise<Option[]> {
     return this.optionRepository.find()
   }
 
-  findOne(id: number) {
+  findOne(id: number): Promise<Option> {
     return this.optionRepository.findOneBy({ id })
   }
 }

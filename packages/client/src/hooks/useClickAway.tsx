@@ -14,7 +14,7 @@ const useClickAway = (handler: () => void) => {
     document.addEventListener('mousedown', handleEvent)
 
     return () => document.removeEventListener('mousedown', handleEvent)
-  })
+  }, [])
 
   return ref
 }

@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
 }
 
 const EButton = styled.button`
-  min-width: 240px;
+  /* min-width: 240px; */
   height: 100px;
   font-size: 32px;
   font-weight: 600;
@@ -39,6 +39,7 @@ const EButton = styled.button`
   align-items: center;
   transition: filter 0.2s;
   border-radius: 20px;
+  background-color: ${({ theme }) => theme.PRIMARY1};
   &:active {
     filter: brightness(80%);
   }

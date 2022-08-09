@@ -1,12 +1,12 @@
-import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useState } from 'react'
+import { theme } from '../../styles'
 import { TMenu } from 'types'
 
 interface TProps {
   menu: TMenu
   onClickMenu(event: React.MouseEvent<HTMLDivElement>): void
-  rank: number
+  rank?: number
 }
 
 const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
@@ -17,7 +17,7 @@ const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
   return (
     <>
       <TabItemWrapper data-id={id} onClick={onClickMenu}>
-        <RankSpan>{rank + 1}위</RankSpan>
+        {rank !== undefined ? <RankSpan>{rank + 1}위</RankSpan> : null}
         <Img src={imgUrl1} imgUrl2={imgUrl2}></Img>
         <Span>{name}</Span>
         <Span>{price.toLocaleString()}원</Span>
@@ -58,6 +58,9 @@ const Img = styled.img<{ imgUrl2: string }>`
   &:hover {
     content: ${({ imgUrl2 }) => `url(${imgUrl2})`};
   }
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px 4px ${theme.LINE};
+  margin-bottom: 10px;
 `
 
 export default React.memo(TabItem)

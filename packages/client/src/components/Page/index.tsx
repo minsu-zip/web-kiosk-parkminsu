@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Page: React.FC<Props> = ({ menus }) => {
-  const [selectedMenu, setSelectedMenu] = useState<TMenu>()
+  const [selectedMenu, setSelectedMenu] = useState<TMenu | undefined>()
   const [visible, setVisible] = useState(false)
   const [count, setCount] = useState(1)
 
@@ -32,7 +32,6 @@ const Page: React.FC<Props> = ({ menus }) => {
   const onClickMenu = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const { id } = (e.currentTarget as HTMLElement).dataset
-      //   setSelectedMenuId(Number(id))
       const menu = menus.find((item) => item.id === Number(id))
       setSelectedMenu(menu)
       setVisible(true)
@@ -56,9 +55,11 @@ const Page: React.FC<Props> = ({ menus }) => {
     return selectedMenu?.price ? selectedMenu.price * count : 0
   }, [selectedMenu, count])
 
-  useEffect(() => {
+  const handleInit = () => {
+    setVisible(false)
     setCount(1)
-  }, [visible])
+    setSelectedMenu(undefined)
+  }
 
   return (
     <>
@@ -72,7 +73,7 @@ const Page: React.FC<Props> = ({ menus }) => {
         ))}
       </TabItemWrapper>
 
-      <Modal visible={visible} onClose={() => setVisible(false)}>
+      <Modal visible={visible} onClose={handleInit}>
         <MenuModalWrapper>
           <MenuInfoWrapper>
             {selectedMenu ? (
@@ -112,7 +113,7 @@ const Page: React.FC<Props> = ({ menus }) => {
         </MenuModalWrapper>
 
         <ButtonWrapper>
-          <Button onClick={() => setVisible(false)} style={{ width: '300px' }}>
+          <Button onClick={handleInit} style={{ width: '300px' }}>
             {totalPrice.toLocaleString()}원 담기
           </Button>
         </ButtonWrapper>

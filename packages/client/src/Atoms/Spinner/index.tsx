@@ -12,7 +12,7 @@ interface Props {
   loading?: boolean
 }
 
-const Spinner: React.FC<Props> = ({ size = 48, loading = true, ...props }) => {
+const Spinner: React.FC<Props> = ({ size = 128, loading = true, ...props }) => {
   const sizeStyle = {
     width: size,
     height: size,

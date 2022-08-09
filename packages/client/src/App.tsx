@@ -3,16 +3,15 @@ import { ThemeProvider } from '@emotion/react'
 import { theme } from './styles'
 import GlobalStyle from './styles/GlobalStyles'
 import { getAllInfo } from './apis/kiosk'
-import Tab from 'atoms/Tab'
-import styled from '@emotion/styled'
-import TabItem from 'atoms/Tab/TabItem'
 import { TCategory } from 'types'
+import Header from './components/Header'
+import Page from 'components/Page'
+import styled from '@emotion/styled'
 
 const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
   const [kioskData, setKioskData] = useState<TCategory[]>()
   const [selected, setSelected] = useState<number>(1)
-  const [selectedMenuId, setSelectedMenuId] = useState<number | undefined>()
 
   const getData = async () => {
     const data = await getAllInfo()
@@ -27,11 +26,6 @@ const App = () => {
     [],
   )
 
-  const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const { id } = (e.target as HTMLElement).dataset
-    setSelectedMenuId(Number(id))
-  }, [])
-
   useEffect(() => {
     getData()
   }, [])
@@ -40,49 +34,24 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <div className="App">
-        <TabWrapper>
-          {kioskData ? (
-            kioskData.length ? (
-              kioskData.map(({ id, name }) => (
-                <Tab
-                  key={id}
-                  id={id}
-                  category={name}
-                  active={selected === id}
-                  onClickCategory={onClickCategory}
-                />
-              ))
-            ) : (
-              <div>데이터가 없습니다.</div>
-            )
-          ) : (
-            <div>로딩중</div>
-          )}
-        </TabWrapper>
+        <Header
+          categories={kioskData}
+          selected={selected}
+          onClickCategory={onClickCategory}></Header>
 
-        <TabItemWrapper>
-          {kioskData?.[selected - 1]?.menus?.map((menu, index) => (
-            <TabItem
-              key={menu.id}
-              menu={menu}
-              onClickMenu={onClickMenu}
-              rank={index}></TabItem>
-          ))}
-        </TabItemWrapper>
+        {kioskData ? (
+          <Page menus={kioskData?.[selected - 1].menus}></Page>
+        ) : null}
       </div>
     </ThemeProvider>
   )
 }
 
-const TabWrapper = styled.div`
-  margin-top: 30px;
+const MenuModalWrapper = styled.div`
   display: flex;
-  justify-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
 `
-const TabItemWrapper = styled.div`
-  display: flex;
-  justify-items: flex-start;
-  flex-wrap: wrap;
-`
+
 export default App

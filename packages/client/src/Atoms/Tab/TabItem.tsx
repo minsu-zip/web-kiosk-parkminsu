@@ -1,6 +1,6 @@
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useState } from 'react'
 import { TMenu } from 'types'
 
 interface TProps {
@@ -10,18 +10,19 @@ interface TProps {
 }
 
 const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
+  const [visible, setVisible] = useState(false)
+
   const { id, imgUrl1, imgUrl2, name, price } = menu
 
   return (
-    <TabItemWrapper data-id={id} onClick={onClickMenu}>
-      <RankSpan>{rank + 1}위</RankSpan>
-      <ImgWrapper>
-        <Img className={imgUrl2 ? 'first' : ''} src={imgUrl1} />
-        <Img src={imgUrl2} />
-      </ImgWrapper>
-      <Span>{name}</Span>
-      <Span>{price}</Span>
-    </TabItemWrapper>
+    <>
+      <TabItemWrapper data-id={id} onClick={onClickMenu}>
+        <RankSpan>{rank + 1}위</RankSpan>
+        <Img src={imgUrl1} imgUrl2={imgUrl2}></Img>
+        <Span>{name}</Span>
+        <Span>{price.toLocaleString()}원</Span>
+      </TabItemWrapper>
+    </>
   )
 }
 
@@ -51,23 +52,11 @@ const TabItemWrapper = styled.div`
   position: relative;
 `
 
-const ImgWrapper = styled.div`
+const Img = styled.img<{ imgUrl2: string }>`
   width: 300px;
   height: 300px;
-  position: relative;
   &:hover {
-    & .first {
-      display: none;
-    }
-  }
-`
-
-const Img = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  &.first {
-    z-index: 1;
+    content: ${({ imgUrl2 }) => `url(${imgUrl2})`};
   }
 `
 

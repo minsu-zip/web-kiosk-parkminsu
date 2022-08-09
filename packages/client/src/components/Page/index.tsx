@@ -14,15 +14,25 @@ interface Props {
 }
 
 const Page: React.FC<Props> = ({ menus }) => {
-  const [selectedMenuId, setSelectedMenuId] = useState<number>()
   const [selectedMenu, setSelectedMenu] = useState<TMenu>()
   const [visible, setVisible] = useState(false)
   const [count, setCount] = useState(1)
 
+  // 옵션 클릭 시 해당 정보 객체로 받아오는 로직
+  // 나중에 구현 예정
+  //   const [selectedOption, setSelectedOption] = useState<any>()
+  //   const handleSelectedOption = (option: TOptionDetail) => {
+  // const selectedOptionFilter = selectedOption?.filter(
+  //   ({ id }: { id: number }) => option.id !== id,
+  // )
+  // const newSelectedOption = [...selectedOptionFilter, option]
+  // setSelectedOption(option)
+  //   }
+
   const onClickMenu = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const { id } = (e.currentTarget as HTMLElement).dataset
-      setSelectedMenuId(Number(id))
+      //   setSelectedMenuId(Number(id))
       const menu = menus.find((item) => item.id === Number(id))
       setSelectedMenu(menu)
       setVisible(true)
@@ -45,6 +55,10 @@ const Page: React.FC<Props> = ({ menus }) => {
   const totalPrice = useMemo(() => {
     return selectedMenu?.price ? selectedMenu.price * count : 0
   }, [selectedMenu, count])
+
+  useEffect(() => {
+    setCount(1)
+  }, [visible])
 
   return (
     <>
@@ -97,15 +111,11 @@ const Page: React.FC<Props> = ({ menus }) => {
           </CheckBox>
         </MenuModalWrapper>
 
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '100px',
-          }}>
-          <Button style={{ width: '300px' }}>{totalPrice} 담기</Button>
-        </div>
-        {/* <button onClick={() => setVisible(false)}>Close</button> */}
+        <ButtonWrapper>
+          <Button onClick={() => setVisible(false)} style={{ width: '300px' }}>
+            {totalPrice.toLocaleString()}원 담기
+          </Button>
+        </ButtonWrapper>
       </Modal>
     </>
   )
@@ -131,6 +141,13 @@ const Span = styled.span`
   width: 150px;
   text-align: center;
 `
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`
+
 const CheckBox = styled.div`
   margin-top: 30px;
   display: flex;

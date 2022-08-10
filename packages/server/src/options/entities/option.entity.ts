@@ -3,7 +3,6 @@ import { OptionDetail } from './optionDetail.entity'
 import { CommonEntity } from '@common/CommonEntity'
 
 @Entity({ name: 'option_table' })
-@Unique(['name'])
 export class Option extends CommonEntity {
   @Column({ type: 'varchar', length: 30 })
   name!: string

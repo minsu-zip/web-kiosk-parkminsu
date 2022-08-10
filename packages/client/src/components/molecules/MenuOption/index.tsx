@@ -1,7 +1,7 @@
-import { TMenuOption } from 'types'
+import { TMenuOption } from 'utils/types'
 import React from 'react'
 import styled from '@emotion/styled'
-import OptionDetail from 'components/OptionDetail'
+import OptionDetail from 'components/molecules/OptionDetail'
 
 interface Props {
   options: TMenuOption[]

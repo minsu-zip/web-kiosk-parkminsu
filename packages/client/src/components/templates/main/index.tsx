@@ -1,13 +1,13 @@
-import { TMenu } from 'types'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import TabItem from '../../atoms/Tab/TabItem'
+import { TMenu } from 'utils/types'
+import React, { useCallback, useMemo, useState } from 'react'
+import TabItem from '../../organisms/Card'
 import styled from '@emotion/styled'
-import Modal from 'atoms/Modal'
-import MenuOption from 'components/MenuOption'
-import Button from 'atoms/Button'
-import IconPlus from '../../images/plus.svg'
-import IconMinus from '../../images/minus.svg'
-import { theme } from '../../styles'
+import Modal from 'components/atoms/Modal'
+import MenuOption from 'components/molecules/MenuOption'
+import Button from 'components/atoms/Button'
+import IconPlus from '../../../utils/images/plus.svg'
+import IconMinus from '../../../utils/images/minus.svg'
+import { theme } from '../../../utils/styles'
 
 interface Props {
   menus: TMenu[]

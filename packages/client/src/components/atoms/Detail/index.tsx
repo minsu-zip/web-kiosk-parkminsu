@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { TOptionDetail } from 'types'
+import { TOptionDetail } from 'utils/types'
 import Iconchecked from '../../images/checked.svg'
 import Iconunchecked from '../../images/unchecked.svg'
 

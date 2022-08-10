@@ -12,7 +12,6 @@ import { Option } from '@src/options/entities/option.entity'
 import { Category } from '@src/categories/entities/category.entity'
 
 @Entity()
-@Unique(['name'])
 export class Menu extends CommonEntity {
   @Column({ type: 'varchar', length: 20 })
   name!: string

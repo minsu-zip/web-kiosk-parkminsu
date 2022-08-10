@@ -1,6 +1,15 @@
-import { Column, Entity, JoinTable, ManyToMany, Unique } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  Unique,
+} from 'typeorm'
 import { CommonEntity } from '@common/CommonEntity'
 import { Option } from '@src/options/entities/option.entity'
+import { Category } from '@src/categories/entities/category.entity'
 
 @Entity()
 @Unique(['name'])
@@ -22,6 +31,10 @@ export class Menu extends CommonEntity {
 
   @Column({ type: 'int' })
   sellCount: number
+
+  @ManyToOne(() => Category, (category) => category.menu)
+  @JoinColumn({ name: 'categoryId' })
+  category: Category
 
   @ManyToMany(() => Option)
   @JoinTable({

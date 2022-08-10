@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { theme } from './styles'
-import GlobalStyle from './styles/GlobalStyles'
+import { theme } from './utils/styles'
+import GlobalStyle from './utils/styles/GlobalStyles'
 import { getAllInfo } from './apis/kiosk'
-import { TCategory } from 'types'
-import Header from './components/Header'
-import Page from 'components/Page'
+import { TCategory } from 'utils/types'
+import Header from './components/templates/Header'
+import Main from 'components/templates/main'
 import styled from '@emotion/styled'
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
           onClickCategory={onClickCategory}></Header>
 
         {kioskData ? (
-          <Page menus={kioskData?.[selected - 1].menus}></Page>
+          <Main menus={kioskData?.[selected - 1].menus}></Main>
         ) : null}
       </div>
     </ThemeProvider>

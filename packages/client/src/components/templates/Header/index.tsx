@@ -1,8 +1,7 @@
-import { TCategory } from '../../types'
-import Tab from '../../atoms/Tab'
+import { TCategory } from '../../../utils/types'
+import Tab from '../../molecules/Tab'
 import styled from '@emotion/styled'
 import Spinner from '../../atoms/Spinner'
-import IconLogo from '../../images/logo.svg'
 
 interface Props {
   categories?: TCategory[]

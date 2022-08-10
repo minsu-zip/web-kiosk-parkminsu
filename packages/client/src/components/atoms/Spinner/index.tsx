@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { theme } from '../../styles/index'
+import { theme } from '../../../utils/styles/index'
 
 const Icon = styled.i`
   display: inline-block;

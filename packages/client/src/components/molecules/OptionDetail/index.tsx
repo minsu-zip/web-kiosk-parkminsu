@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import React, { useState } from 'react'
-import { TOptionDetail } from 'types'
-import IconUnchecked from '../../images/unchecked.svg'
-import IconChecked from '../../images/checked.svg'
+import { TOptionDetail } from 'utils/types'
+import IconUnchecked from '../../../utils/images/unchecked.svg'
+import IconChecked from '../../../utils/images/checked.svg'
 
 interface Props {
   detail: TOptionDetail[]

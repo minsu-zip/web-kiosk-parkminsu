@@ -1,5 +1,5 @@
 import { axiosInstance } from './util'
-import { TCategory } from 'types'
+import { TCategory } from 'utils/types'
 
 export const getAllInfo = async (): Promise<TCategory[] | undefined> => {
   try {

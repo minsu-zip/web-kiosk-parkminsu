@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "name": "단백질 보충제",
+    "menu": [
+      {
+        "id": 1,
+        "name": "임팩트 웨이 프로틴",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-1224889444460882.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-4134889444511789.jpg",
+        "price": 20000,
+        "sellCount": 4
+      },
+      {
+        "id": 2,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 5
+      },
+      {
+        "id": 3,
+        "name": "임팩트 웨이 프로틴",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-1224889444460882.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-4134889444511789.jpg",
+        "price": 20000,
+        "sellCount": 1
+      },
+      {
+        "id": 4,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 3
+      },
+      {
+        "id": 5,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 6,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 7,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 8,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 9,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "간식&식품",
+    "menu": [
+      {
+        "id": 10,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 11,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 12,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 13,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      },
+      {
+        "id": 14,
+        "name": "클리어 웨이 아이솔레이트",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/1600/1600/12457913-3554790136840897.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/12081395-1194954986226116.jpg",
+        "price": 35000,
+        "sellCount": 0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "비타민",
+    "menu": [
+      {
+        "id": 15,
+        "name": "임팩트 웨이 프로틴",
+        "imgUrl1": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-1224889444460882.jpg",
+        "imgUrl2": "https://static.thcdn.com/images/xsmall/webp//productimg/original/10530943-4134889444511789.jpg",
+        "price": 20000,
+        "sellCount": 4
+      }
+    ]
+  }
+]

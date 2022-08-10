@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MySqlConfigModule } from './config/database/config.module'
 import { MySqlConfigService } from './config/database/config.service'
 import { OptionsModule } from './options/options.module'
+import { MenusModule } from './menus/menus.module'
+import { CategoriesModule } from './categories/categories.module'
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { OptionsModule } from './options/options.module'
       inject: [MySqlConfigService],
     }),
     OptionsModule,
+    MenusModule,
+    CategoriesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

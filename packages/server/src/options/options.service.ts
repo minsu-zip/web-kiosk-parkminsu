@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Option } from './entities/option.entity'
@@ -9,11 +9,23 @@ export class OptionsService {
     @InjectRepository(Option) private optionRepository: Repository<Option>,
   ) {}
 
-  findAll() {
-    return this.optionRepository.find()
+  async findAll() {
+    try {
+      const data = await this.optionRepository
+        .createQueryBuilder('option')
+        .leftJoinAndSelect('option.details', 'details')
+        .getMany()
+
+      if (!data)
+        throw new HttpException('옵션 정보가 없습니다.', HttpStatus.NOT_FOUND)
+
+      return data
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_GATEWAY)
+    }
   }
 
-  findOne(id: number) {
+  findOne(id: number): Promise<Option> {
     return this.optionRepository.findOneBy({ id })
   }
 }

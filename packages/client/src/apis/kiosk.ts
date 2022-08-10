@@ -1,7 +1,7 @@
 import { axiosInstance } from './util'
 import { TCategory } from 'utils/types'
 
-export const getAllInfo = async (): Promise<TCategory[] | undefined> => {
+export const getAllInfoAPI = async (): Promise<TCategory[] | undefined> => {
   try {
     const { data, status } = await axiosInstance.get('categories')
 

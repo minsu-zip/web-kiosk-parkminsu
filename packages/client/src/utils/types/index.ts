@@ -8,7 +8,7 @@ interface TOptionDetail extends TBase {
 }
 
 interface TMenuOption extends TBase {
-  detail: TOptionDetail[]
+  details: TOptionDetail[]
 }
 
 interface TMenu extends TBase {

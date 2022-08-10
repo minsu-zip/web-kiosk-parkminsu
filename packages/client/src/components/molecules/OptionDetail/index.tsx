@@ -5,18 +5,18 @@ import IconUnchecked from '../../../utils/images/unchecked.svg'
 import IconChecked from '../../../utils/images/checked.svg'
 
 interface Props {
-  detail: TOptionDetail[]
+  details: TOptionDetail[]
 }
 
-const OptionDetail: React.FC<Props> = ({ detail }) => {
-  const [selectedOption, setSelectedOption] = useState(detail[0])
+const OptionDetail: React.FC<Props> = ({ details }) => {
+  const [selectedOption, setSelectedOption] = useState(details[0])
   const handleSeletedDetail = (option: TOptionDetail) => {
     setSelectedOption(option)
   }
 
   return (
     <>
-      {detail.map((option) => (
+      {details.map((option) => (
         <OptionWrapper onClick={() => handleSeletedDetail(option)}>
           <Div>
             {selectedOption.id === option.id ? (

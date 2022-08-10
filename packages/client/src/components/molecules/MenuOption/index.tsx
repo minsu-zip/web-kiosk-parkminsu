@@ -10,11 +10,11 @@ interface Props {
 const MenuOption: React.FC<Props> = ({ options }) => {
   return (
     <OptionContainer>
-      {options.map(({ name, detail }) => (
-        <>
-          <Div>{name}</Div>
-          <OptionDetail detail={detail}></OptionDetail>
-        </>
+      {options.map(({ name, details, id }, index) => (
+        <div key={`${index}${id}`}>
+          <Span>{name}</Span>
+          <OptionDetail details={details}></OptionDetail>
+        </div>
       ))}
     </OptionContainer>
   )
@@ -28,7 +28,7 @@ const OptionContainer = styled.div`
   justify-content: center;
 `
 
-const Div = styled.span`
+const Span = styled.span`
   margin-left: 10px;
   font-size: 18px;
 `

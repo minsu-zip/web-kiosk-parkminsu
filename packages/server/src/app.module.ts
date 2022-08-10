@@ -7,6 +7,7 @@ import { MySqlConfigModule } from './config/database/config.module'
 import { MySqlConfigService } from './config/database/config.service'
 import { OptionsModule } from './options/options.module'
 import { MenusModule } from './menus/menus.module'
+import { CategoriesModule } from './categories/categories.module'
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { MenusModule } from './menus/menus.module'
     }),
     OptionsModule,
     MenusModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

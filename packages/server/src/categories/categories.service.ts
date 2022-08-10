@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { map } from 'rxjs'
 import { Repository } from 'typeorm'
 import { Category } from './entities/category.entity'
 
@@ -23,11 +24,19 @@ export class CategoriesService {
           HttpStatus.NOT_FOUND,
         )
 
-      const sortCategory = categories.map(({ menu }) =>
-        menu.sort((a, b) => b.sellCount - a.sellCount),
-      )
+      const sortCategory = categories.map((category) => {
+        category.menu.sort((a, b) => b.sellCount - a.sellCount)
+        return category
+      })
 
-      return sortCategory
+      const data = sortCategory.map(({ id, createdAt, name, menu }) => ({
+        id,
+        createdAt,
+        name,
+        menus: menu,
+      }))
+
+      return data
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_GATEWAY)
     }

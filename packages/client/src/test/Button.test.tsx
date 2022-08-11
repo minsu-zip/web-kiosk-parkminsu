@@ -17,4 +17,13 @@ describe('버튼 컴포넌트 테스트<Button />', () => {
     fireEvent.click(button)
     expect(onClick).toHaveBeenCalledTimes(1)
   })
+
+  it('버튼 활성화 테스트', () => {
+    const { rerender } = render(<Button disabled={true}>버튼</Button>)
+    const button = screen.getByText('버튼')
+    expect(button).toBeDisabled()
+
+    rerender(<Button disabled={false}>버튼</Button>)
+    expect(button).toBeEnabled()
+  })
 })

@@ -4,28 +4,50 @@ import { TOptionDetail } from 'utils/types'
 import IconUnchecked from '../../../utils/images/unchecked.svg'
 import IconChecked from '../../../utils/images/checked.svg'
 
-interface Props {
-  detail: TOptionDetail[]
+interface SelectedProps {
+  optionId: number
+  option: TOptionDetail
 }
 
-const OptionDetail: React.FC<Props> = ({ detail }) => {
-  const [selectedOption, setSelectedOption] = useState(detail[0])
-  const handleSeletedDetail = (option: TOptionDetail) => {
-    setSelectedOption(option)
+interface Props {
+  details: TOptionDetail[]
+  optionId: number
+  handleSelectedOption(option: SelectedProps): void
+}
+
+const OptionDetail: React.FC<Props> = ({
+  details,
+  optionId,
+  handleSelectedOption,
+}) => {
+  const [checkedOption, setCheckedOption] = useState(details[0].id)
+
+  const clickEvent = (
+    id: number,
+    optionId: number,
+    name: string,
+    price: number,
+  ) => {
+    const data = { optionId, option: { id, name, price } }
+    handleSelectedOption(data)
+    setCheckedOption(id)
   }
 
   return (
     <>
-      {detail.map((option) => (
-        <OptionWrapper onClick={() => handleSeletedDetail(option)}>
+      {details.map(({ id, name, price }) => (
+        <OptionWrapper
+          key={`detail.${id}`}
+          onClick={() => clickEvent(id, optionId, name, price)}>
           <Div>
-            {selectedOption.id === option.id ? (
-              <img src={IconChecked} />
+            {checkedOption === id ? (
+              <img src={IconChecked} alt={'IconChecked'} />
             ) : (
-              <img src={IconUnchecked} />
+              <img src={IconUnchecked} alt={'IconUnChecked'} />
             )}
           </Div>
-          <Div>{option.name}</Div>
+          <Div>{name}</Div>
+          <Div>{price.toLocaleString()}원</Div>
         </OptionWrapper>
       ))}
     </>

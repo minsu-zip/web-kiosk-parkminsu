@@ -16,6 +16,7 @@ export class MenusService {
         .leftJoinAndSelect('menu.options', 'options')
         .leftJoinAndSelect('options.details', 'details')
         .where('menu.id = :id', { id })
+        .orderBy('details.id')
         .getOne()
 
       if (!menuInfo)

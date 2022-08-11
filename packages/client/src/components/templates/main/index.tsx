@@ -1,13 +1,17 @@
-import { TMenu } from 'utils/types'
+import { TMenu, TOptionDetail } from 'utils/types'
 import React, { useCallback, useMemo, useState } from 'react'
-import TabItem from '../../organisms/Card'
+import Card from '../../organisms/Card'
 import styled from '@emotion/styled'
 import Modal from 'components/atoms/Modal'
 import MenuOption from 'components/molecules/MenuOption'
-import Button from 'components/atoms/Button'
-import IconPlus from '../../../utils/images/plus.svg'
-import IconMinus from '../../../utils/images/minus.svg'
-import { theme } from '../../../utils/styles'
+import { getMenuAPI } from '../../../apis/kiosk'
+import Spinner from 'components/atoms/Spinner'
+import { useCarts } from 'contexts/CartProvider'
+
+// interface Cart {
+//   count: number
+//   selectedOption: TOptionDetail
+// }
 
 interface Props {
   menus: TMenu[]
@@ -16,147 +20,79 @@ interface Props {
 const Page: React.FC<Props> = ({ menus }) => {
   const [selectedMenu, setSelectedMenu] = useState<TMenu | undefined>()
   const [visible, setVisible] = useState(false)
-  const [count, setCount] = useState(1)
+  const { addCart } = useCarts()
 
-  // 옵션 클릭 시 해당 정보 객체로 받아오는 로직
-  // 나중에 구현 예정
-  //   const [selectedOption, setSelectedOption] = useState<any>()
-  //   const handleSelectedOption = (option: TOptionDetail) => {
-  // const selectedOptionFilter = selectedOption?.filter(
-  //   ({ id }: { id: number }) => option.id !== id,
-  // )
-  // const newSelectedOption = [...selectedOptionFilter, option]
-  // setSelectedOption(option)
-  //   }
+  const getMenu = async (id: number) => {
+    const data = await getMenuAPI(id)
+    setSelectedMenu(data)
+    setVisible(true)
+  }
 
-  const onClickMenu = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const { id } = (e.currentTarget as HTMLElement).dataset
-      const menu = menus.find((item) => item.id === Number(id))
-      setSelectedMenu(menu)
-      setVisible(true)
-    },
-    [menus],
-  )
+  const onClickMenu = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const { id } = (e.currentTarget as HTMLElement).dataset
+    getMenu(Number(id))
+  }, [])
 
-  const onIncreaseCount = useCallback(() => {
-    if (count >= 10) return
-
-    setCount((count) => count + 1)
-  }, [count])
-
-  const onDecreaseCount = useCallback(() => {
-    if (count <= 1) return
-
-    setCount((count) => count - 1)
-  }, [count])
-
-  const totalPrice = useMemo(() => {
-    return selectedMenu?.price ? selectedMenu.price * count : 0
-  }, [selectedMenu, count])
-
-  const handleInit = () => {
-    setVisible(false)
-    setCount(1)
+  const handleInit = (data?: any) => {
+    if (data) {
+      const { count, selectedOption } = data
+      addCart({ count, selectedOption, ...selectedMenu })
+    }
     setSelectedMenu(undefined)
+    setVisible(false)
   }
 
   return (
     <>
-      <TabItemWrapper>
+      <CardWrapper>
         {menus?.map((menu, index) => (
-          <TabItem
+          <Card
             key={menu.id}
             menu={menu}
             onClickMenu={onClickMenu}
-            rank={index}></TabItem>
+            rank={index}></Card>
         ))}
-      </TabItemWrapper>
+      </CardWrapper>
 
       <Modal visible={visible} onClose={handleInit}>
-        <MenuModalWrapper>
-          <MenuInfoWrapper>
-            {selectedMenu ? (
-              <>
-                <TabItem
-                  key={selectedMenu.id}
-                  menu={selectedMenu}
-                  onClickMenu={onClickMenu}
-                />
-                <MenuOption options={selectedMenu.options} />
-              </>
-            ) : null}
-          </MenuInfoWrapper>
-
-          <CheckBox>
-            <Span>수량</Span>
-
-            <Button
-              onClick={onIncreaseCount}
-              style={{
-                width: '80px',
-                height: '50px',
-              }}>
-              <img src={IconPlus} />
-            </Button>
-            <Span>{count < 10 ? count : '최대 10'} 개</Span>
-            <Button
-              onClick={onDecreaseCount}
-              style={{
-                width: '80px',
-                height: '50px',
-                backgroundColor: `${theme.ERROR}`,
-              }}>
-              <img src={IconMinus} />
-            </Button>
-          </CheckBox>
-        </MenuModalWrapper>
-
-        <ButtonWrapper>
-          <Button onClick={handleInit} style={{ width: '300px' }}>
-            {totalPrice.toLocaleString()}원 담기
-          </Button>
-        </ButtonWrapper>
+        <MenuInfoWrapper>
+          {selectedMenu ? (
+            <>
+              <Card
+                key={selectedMenu.id}
+                menu={selectedMenu}
+                onClickMenu={onClickMenu}
+              />
+              <MenuOption
+                options={selectedMenu.options}
+                menuPrice={selectedMenu.price}
+                onClose={handleInit}
+              />
+            </>
+          ) : (
+            <Spinner></Spinner>
+          )}
+        </MenuInfoWrapper>
       </Modal>
     </>
   )
 }
 
-const MenuModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
 const MenuInfoWrapper = styled.div`
   display: flex;
-`
-
-const TabItemWrapper = styled.div`
-  display: flex;
-  justify-items: flex-start;
-  flex-wrap: wrap;
-`
-
-const Span = styled.span`
-  font-size: 30px;
-  width: 150px;
-  text-align: center;
-`
-
-const ButtonWrapper = styled.div`
-  display: flex;
+  align-items: center;
   justify-content: center;
+  & > * {
+    justify-content: flex-start;
+    align-self: flex-start;
+  }
   margin-top: 100px;
 `
 
-const CheckBox = styled.div`
-  margin-top: 30px;
+const CardWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin: 20px;
-
-  align-items: center;
+  justify-items: flex-start;
+  flex-wrap: wrap;
 `
 
 export default Page

@@ -1,4 +1,4 @@
-import { TMenu, TOptionDetail } from 'utils/types'
+import { TCart, TMenu, TMenuInfo, TOptionDetail } from 'utils/types'
 import React, { useCallback, useMemo, useState } from 'react'
 import Card from '../../organisms/Card'
 import styled from '@emotion/styled'
@@ -33,7 +33,7 @@ const Page: React.FC<Props> = ({ menus }) => {
     getMenu(Number(id))
   }, [])
 
-  const handleInit = (data?: any) => {
+  const handleInit = (data?: TMenuInfo) => {
     if (data) {
       const { count, selectedOption, totalPrice } = data
       addCart({ count, selectedOption, totalPrice, ...selectedMenu })

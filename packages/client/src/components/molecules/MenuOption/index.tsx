@@ -1,4 +1,4 @@
-import { TMenuOption, TOptionDetail } from 'utils/types'
+import { TMenuInfo, TMenuOption, TOptionDetail } from 'utils/types'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import OptionDetail from 'components/molecules/OptionDetail'
@@ -9,7 +9,7 @@ import { theme } from '../../../utils/styles'
 interface Props {
   options: TMenuOption[]
   menuPrice: number
-  onClose: (data: any) => void
+  onClose: (data: TMenuInfo) => void
 }
 
 interface SelectedProps {

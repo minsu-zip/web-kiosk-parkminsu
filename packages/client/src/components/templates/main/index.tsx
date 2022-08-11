@@ -1,4 +1,4 @@
-import { TMenu } from 'utils/types'
+import { TMenu, TOptionDetail } from 'utils/types'
 import React, { useCallback, useMemo, useState } from 'react'
 import Card from '../../organisms/Card'
 import styled from '@emotion/styled'
@@ -6,6 +6,12 @@ import Modal from 'components/atoms/Modal'
 import MenuOption from 'components/molecules/MenuOption'
 import { getMenuAPI } from '../../../apis/kiosk'
 import Spinner from 'components/atoms/Spinner'
+import { useCarts } from 'contexts/CartProvider'
+
+// interface Cart {
+//   count: number
+//   selectedOption: TOptionDetail
+// }
 
 interface Props {
   menus: TMenu[]
@@ -14,6 +20,7 @@ interface Props {
 const Page: React.FC<Props> = ({ menus }) => {
   const [selectedMenu, setSelectedMenu] = useState<TMenu | undefined>()
   const [visible, setVisible] = useState(false)
+  const { addCart } = useCarts()
 
   const getMenu = async (id: number) => {
     const data = await getMenuAPI(id)
@@ -26,7 +33,11 @@ const Page: React.FC<Props> = ({ menus }) => {
     getMenu(Number(id))
   }, [])
 
-  const handleInit = () => {
+  const handleInit = (data?: any) => {
+    if (data) {
+      const { count, selectedOption } = data
+      addCart({ count, selectedOption, ...selectedMenu })
+    }
     setSelectedMenu(undefined)
     setVisible(false)
   }
@@ -55,6 +66,7 @@ const Page: React.FC<Props> = ({ menus }) => {
               <MenuOption
                 options={selectedMenu.options}
                 menuPrice={selectedMenu.price}
+                onClose={handleInit}
               />
             </>
           ) : (
@@ -68,6 +80,13 @@ const Page: React.FC<Props> = ({ menus }) => {
 
 const MenuInfoWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    justify-content: flex-start;
+    align-self: flex-start;
+  }
+  margin-top: 100px;
 `
 
 const CardWrapper = styled.div`

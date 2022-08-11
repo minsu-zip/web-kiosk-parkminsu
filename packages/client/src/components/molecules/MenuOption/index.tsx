@@ -84,7 +84,7 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
             width: '80px',
             height: '50px',
           }}>
-          <img src={IconPlus} />
+          <img src={IconPlus} alt="IconPlus" />
         </Button>
         <Span>{count < 10 ? count : '최대 10'} 개</Span>
         <Button
@@ -94,7 +94,7 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
             height: '50px',
             backgroundColor: `${theme.ERROR}`,
           }}>
-          <img src={IconMinus} />
+          <img src={IconMinus} alt="IconMinus" />
         </Button>
       </CheckBox>
 
@@ -111,6 +111,7 @@ const OptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 30px;
+  margin: 28px;
 `
 
 const Title = styled.span`
@@ -133,7 +134,6 @@ const CheckBox = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   margin: 20px;
   align-items: center;
 `

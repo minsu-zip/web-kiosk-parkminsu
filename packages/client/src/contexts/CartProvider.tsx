@@ -15,12 +15,17 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     ])
   }
 
+  const removeCart = (id: number) => {
+    const newCart = carts.filter((cart: any) => cart.id !== id)
+    setCarts(newCart)
+  }
+
   const initCart = () => {
     setCarts([])
   }
 
   return (
-    <CartContext.Provider value={{ carts, addCart, initCart }}>
+    <CartContext.Provider value={{ carts, addCart, removeCart, initCart }}>
       {children}
     </CartContext.Provider>
   )

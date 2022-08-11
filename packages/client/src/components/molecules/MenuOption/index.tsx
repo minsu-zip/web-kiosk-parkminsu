@@ -45,7 +45,7 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice, onClose }) => {
   }, [count])
 
   const addCart = () => {
-    const data = { count, selectedOption }
+    const data = { count, totalPrice, selectedOption }
     onClose(data)
   }
 

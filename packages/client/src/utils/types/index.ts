@@ -23,4 +23,22 @@ interface TCategory extends TBase {
   menus: TMenu[]
 }
 
-export type { TCategory, TMenu, TMenuOption, TOptionDetail }
+interface TSelectedOption {
+  optionId: number
+  option: TOptionDetail
+}
+
+interface TCart extends TBase, TMenu {
+  categoryId: number
+  count: number
+  createdAt?: string
+  totalPrice: number
+  selectedOption: TSelectedOption[]
+}
+
+interface TMenuInfo {
+  count: number
+  totalPrice: number
+  selectedOption?: TSelectedOption[]
+}
+export type { TCategory, TMenu, TMenuOption, TOptionDetail, TCart, TMenuInfo }

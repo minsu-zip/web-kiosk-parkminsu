@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Button from 'components/atoms/Button'
-import { theme } from '../../../utils/styles/index'
+import { theme } from 'utils/styles/index'
 
 interface ActiveProps {
   active: boolean

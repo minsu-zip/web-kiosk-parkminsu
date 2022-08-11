@@ -1,15 +1,15 @@
-import { TMenuOption, TOptionDetail } from 'utils/types'
+import { TMenuInfo, TMenuOption, TOptionDetail } from 'utils/types'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import OptionDetail from 'components/molecules/OptionDetail'
 import Button from 'components/atoms/Button'
-import IconPlus from '../../../utils/images/plus.svg'
-import IconMinus from '../../../utils/images/minus.svg'
-import { theme } from '../../../utils/styles'
+import IconPlus from 'utils/images/plus.svg'
+import IconMinus from 'utils/images/minus.svg'
+import { theme } from 'utils/styles'
 interface Props {
   options: TMenuOption[]
   menuPrice: number
-  onClose: (data: any) => void
+  onClose: (data: TMenuInfo) => void
 }
 
 interface SelectedProps {
@@ -45,7 +45,7 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice, onClose }) => {
   }, [count])
 
   const addCart = () => {
-    const data = { count, selectedOption }
+    const data = { count, totalPrice, selectedOption }
     onClose(data)
   }
 

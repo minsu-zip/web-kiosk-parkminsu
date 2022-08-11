@@ -1,4 +1,4 @@
-import { TCategory } from '../../../utils/types'
+import { TCategory } from 'utils/types'
 import Tab from '../../molecules/Tab'
 import styled from '@emotion/styled'
 import Spinner from '../../atoms/Spinner'

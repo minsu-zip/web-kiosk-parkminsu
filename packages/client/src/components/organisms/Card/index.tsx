@@ -1,26 +1,39 @@
 import styled from '@emotion/styled'
-import React, { useState } from 'react'
-import { theme } from '../../../utils/styles'
+import React, { CSSProperties, useState } from 'react'
+import { theme } from 'utils/styles'
 import { TMenu } from 'utils/types'
 
 interface TProps {
   menu: TMenu
-  onClickMenu(event: React.MouseEvent<HTMLDivElement>): void
+  onClickMenu?(event: React.MouseEvent<HTMLDivElement>): void
   rank?: number
+  width?: number
+  hideLabel?: boolean
+  style?: CSSProperties
 }
 
-const TabItem: React.FC<TProps> = ({ menu, onClickMenu, rank }) => {
+const TabItem: React.FC<TProps> = ({
+  menu,
+  onClickMenu,
+  rank,
+  style,
+  hideLabel,
+}) => {
   const [visible, setVisible] = useState(false)
 
   const { id, imgUrl1, imgUrl2, name, price } = menu
 
   return (
     <>
-      <TabItemWrapper data-id={id} onClick={onClickMenu}>
+      <TabItemWrapper data-id={id} onClick={onClickMenu} style={{ ...style }}>
         {rank !== undefined ? <RankSpan>{rank + 1}위</RankSpan> : null}
         <Img src={imgUrl1} imgUrl2={imgUrl2}></Img>
-        <Span>{name}</Span>
-        <Span>{price.toLocaleString()}원</Span>
+        {!hideLabel && (
+          <>
+            <Span>{name}</Span>
+            <Span>{price.toLocaleString()}원</Span>
+          </>
+        )}
       </TabItemWrapper>
     </>
   )
@@ -53,14 +66,15 @@ const TabItemWrapper = styled.div`
 `
 
 const Img = styled.img<{ imgUrl2: string }>`
-  width: 300px;
-  height: 300px;
   &:hover {
     content: ${({ imgUrl2 }) => `url(${imgUrl2})`};
   }
+  height: 100%;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 4px 4px 4px 4px ${theme.LINE};
   margin-bottom: 10px;
+  object-fit: contain;
 `
 
 export default React.memo(TabItem)

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import { theme } from '../../../utils/styles/index'
+import { theme } from 'utils/styles/index'
 import styled from '@emotion/styled'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

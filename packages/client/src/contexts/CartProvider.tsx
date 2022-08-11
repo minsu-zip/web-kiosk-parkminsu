@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from 'react'
+import { TCart } from 'utils/types'
 
 const CartContext = createContext<any>({})
 export const useCarts = () => useContext(CartContext)
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [carts, setCarts] = useState<any>([])
+  const [carts, setCarts] = useState<TCart[]>([])
 
-  const addCart = (newCart: any) => {
+  const addCart = (newCart: TCart) => {
     setCarts([
       ...carts,
       {
@@ -15,12 +16,17 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     ])
   }
 
+  const removeCart = (id: number) => {
+    const newCart = carts.filter((cart: TCart) => cart.id !== id)
+    setCarts(newCart)
+  }
+
   const initCart = () => {
     setCarts([])
   }
 
   return (
-    <CartContext.Provider value={{ carts, addCart, initCart }}>
+    <CartContext.Provider value={{ carts, addCart, removeCart, initCart }}>
       {children}
     </CartContext.Provider>
   )

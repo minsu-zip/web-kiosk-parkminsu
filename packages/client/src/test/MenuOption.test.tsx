@@ -50,4 +50,32 @@ describe('메뉴 옵션 컴포넌트<MenuOption />', () => {
       screen.getByText(`${(optionPrice + menuPrice).toLocaleString()}원 담기`),
     ).toBeInTheDocument()
   })
+
+  it('옵션 및 수량 선택에 따른 가격 테스트', () => {
+    render(component)
+
+    optionData.forEach(({ details }) => {
+      const selectedOption = screen.getByTestId(
+        `option-detail-${details[details.length - 1].id}`,
+      )
+      fireEvent.click(selectedOption)
+    })
+
+    const optionPrice = optionData.reduce(
+      (acc, cur) => acc + cur.details[cur.details.length - 1].price,
+      0,
+    )
+
+    const plusButton = screen.getByTestId('plusButton')
+    const count = 4
+    for (let i = 0; i < count - 1; i++) {
+      fireEvent.click(plusButton)
+    }
+
+    expect(
+      screen.getByText(
+        `${((optionPrice + menuPrice) * count).toLocaleString()}원 담기`,
+      ),
+    ).toBeInTheDocument()
+  })
 })

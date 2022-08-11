@@ -35,8 +35,8 @@ const Page: React.FC<Props> = ({ menus }) => {
 
   const handleInit = (data?: any) => {
     if (data) {
-      const { count, selectedOption } = data
-      addCart({ count, selectedOption, ...selectedMenu })
+      const { count, selectedOption, totalPrice } = data
+      addCart({ count, selectedOption, totalPrice, ...selectedMenu })
     }
     setSelectedMenu(undefined)
     setVisible(false)

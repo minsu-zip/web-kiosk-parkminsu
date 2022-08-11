@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import OptionDetail from 'components/molecules/OptionDetail'
 import Button from 'components/atoms/Button'
-import IconPlus from '../../../utils/images/plus.svg'
-import IconMinus from '../../../utils/images/minus.svg'
-import { theme } from '../../../utils/styles'
+import IconPlus from 'utils/images/plus.svg'
+import IconMinus from 'utils/images/minus.svg'
+import { theme } from 'utils/styles'
 interface Props {
   options: TMenuOption[]
   menuPrice: number

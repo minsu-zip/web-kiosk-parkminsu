@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React, { CSSProperties, useState } from 'react'
-import { theme } from '../../../utils/styles'
+import { theme } from 'utils/styles'
 import { TMenu } from 'utils/types'
 
 interface TProps {

@@ -3,7 +3,7 @@ import Button from 'components/atoms/Button'
 import Card from 'components/organisms/Card'
 import { useCarts } from 'contexts/CartProvider'
 import { useMemo } from 'react'
-import { theme } from '../../../utils/styles'
+import { theme } from 'utils/styles'
 import Timer from './Timer'
 
 const Footer = () => {

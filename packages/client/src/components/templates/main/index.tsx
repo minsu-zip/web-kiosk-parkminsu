@@ -1,17 +1,12 @@
-import { TCart, TMenu, TMenuInfo, TOptionDetail } from 'utils/types'
-import React, { useCallback, useMemo, useState } from 'react'
+import { TMenu, TMenuInfo } from 'utils/types'
+import React, { useCallback, useState } from 'react'
 import Card from '../../organisms/Card'
 import styled from '@emotion/styled'
 import Modal from 'components/atoms/Modal'
 import MenuOption from 'components/molecules/MenuOption'
-import { getMenuAPI } from '../../../apis/kiosk'
+import { getMenuAPI } from 'apis/kiosk'
 import Spinner from 'components/atoms/Spinner'
 import { useCarts } from 'contexts/CartProvider'
-
-// interface Cart {
-//   count: number
-//   selectedOption: TOptionDetail
-// }
 
 interface Props {
   menus: TMenu[]

@@ -6,6 +6,8 @@ import { getAllInfoAPI } from './apis/kiosk'
 import { TCategory } from 'utils/types'
 import Header from './components/templates/Header'
 import Main from 'components/templates/main'
+import Footer from 'components/templates/footer'
+import CartProvider from 'contexts/CartProvider'
 
 const App = () => {
   // 데이터 필드 변경에 따른 ts타입 나중에 변경 예정
@@ -37,10 +39,13 @@ const App = () => {
           categories={kioskData}
           selected={selected}
           onClickCategory={onClickCategory}></Header>
+        <CartProvider>
+          {kioskData ? (
+            <Main menus={kioskData?.[selected - 1].menus}></Main>
+          ) : null}
 
-        {kioskData ? (
-          <Main menus={kioskData?.[selected - 1].menus}></Main>
-        ) : null}
+          <Footer></Footer>
+        </CartProvider>
       </div>
     </ThemeProvider>
   )

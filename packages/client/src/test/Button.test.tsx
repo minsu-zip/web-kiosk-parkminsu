@@ -8,4 +8,13 @@ describe('버튼 컴포넌트 테스트<Button />', () => {
 
     expect(button).toBeInTheDocument()
   })
+
+  it('클릭 이벤트 테스트', () => {
+    const onClick = jest.fn()
+    render(<Button onClick={onClick}>버튼</Button>)
+    const button = screen.getByText('버튼')
+
+    fireEvent.click(button)
+    expect(onClick).toHaveBeenCalledTimes(1)
+  })
 })

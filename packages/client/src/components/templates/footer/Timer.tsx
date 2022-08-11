@@ -14,7 +14,7 @@ const Timer = ({ initCart }: any) => {
     }, 1000)
 
     return () => clearInterval(countdown)
-  }, [seconds, onclick])
+  }, [seconds, initCart])
 
   return (
     <div onClick={() => setSeconds(20)}>

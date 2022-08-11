@@ -9,6 +9,7 @@ import { theme } from '../../../utils/styles'
 interface Props {
   options: TMenuOption[]
   menuPrice: number
+  onClose: (data: any) => void
 }
 
 interface SelectedProps {
@@ -16,7 +17,7 @@ interface SelectedProps {
   option: TOptionDetail
 }
 
-const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
+const MenuOption: React.FC<Props> = ({ options, menuPrice, onClose }) => {
   const [count, setCount] = useState(1)
   const [selectedOption, setSelectedOption] = useState<SelectedProps[]>()
 
@@ -42,6 +43,11 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
 
     setCount((count) => count - 1)
   }, [count])
+
+  const addCart = () => {
+    const data = { count, selectedOption }
+    onClose(data)
+  }
 
   const handleSelectedOption = (data: SelectedProps) => {
     const result = selectedOption?.every(
@@ -99,7 +105,7 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
       </CheckBox>
 
       <ButtonWrapper>
-        <Button style={{ width: '300px' }}>
+        <Button onClick={addCart} style={{ width: '300px' }}>
           {totalPrice.toLocaleString()}원 담기
         </Button>
       </ButtonWrapper>
@@ -110,7 +116,6 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice }) => {
 const OptionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
   margin: 28px;
 `
 

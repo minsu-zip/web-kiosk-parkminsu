@@ -38,7 +38,8 @@ const OptionDetail: React.FC<Props> = ({
       {details.map(({ id, name, price }) => (
         <OptionWrapper
           key={`detail.${id}`}
-          onClick={() => clickEvent(id, optionId, name, price)}>
+          onClick={() => clickEvent(id, optionId, name, price)}
+          data-testid={`option-detail-${id}`}>
           <Div>
             {checkedOption === id ? (
               <img src={IconChecked} alt={'IconChecked'} />

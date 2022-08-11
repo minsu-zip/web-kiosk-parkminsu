@@ -89,17 +89,19 @@ const MenuOption: React.FC<Props> = ({ options, menuPrice, onClose }) => {
           style={{
             width: '80px',
             height: '50px',
-          }}>
+          }}
+          data-testid={`plusButton`}>
           <img src={IconPlus} alt="IconPlus" />
         </Button>
-        <Span>{count < 10 ? count : '최대 10'} 개</Span>
+        <Span data-testid={`$count`}>{count < 10 ? count : '최대 10'} 개</Span>
         <Button
           onClick={onDecreaseCount}
           style={{
             width: '80px',
             height: '50px',
             backgroundColor: `${theme.ERROR}`,
-          }}>
+          }}
+          data-testid={`minusButton`}>
           <img src={IconMinus} alt="IconMinus" />
         </Button>
       </CheckBox>

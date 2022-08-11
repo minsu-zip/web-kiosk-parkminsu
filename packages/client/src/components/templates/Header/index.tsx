@@ -21,7 +21,7 @@ const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
   return (
     <>
       <HeaderWrapper>
-        <h1>민수의 헬스 키오스크</h1>
+        <HeaderTitle>운동하는 개발자's Kiosk</HeaderTitle>
       </HeaderWrapper>
       <TabWrapper>
         {categories.length ? (
@@ -45,8 +45,12 @@ const Header: React.FC<Props> = ({ categories, onClickCategory, selected }) => {
 const HeaderWrapper = styled.div`
   margin: 0 auto;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+`
+const HeaderTitle = styled.div`
+  font-size: 50px;
+  font-weight: 800;
 `
 const TabWrapper = styled.div`
   margin-top: 30px;

@@ -37,4 +37,17 @@ describe('메뉴 옵션 컴포넌트<MenuOption />', () => {
     }
     expect(screen.getByText('1 개')).toBeInTheDocument()
   })
+
+  it('초기 상품 가격 테스트', () => {
+    render(component)
+
+    const optionPrice = optionData.reduce(
+      (acc, cur) => acc + cur.details[0].price,
+      0,
+    )
+
+    expect(
+      screen.getByText(`${(optionPrice + menuPrice).toLocaleString()}원 담기`),
+    ).toBeInTheDocument()
+  })
 })

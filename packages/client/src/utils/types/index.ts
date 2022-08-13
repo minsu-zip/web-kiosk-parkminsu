@@ -16,7 +16,7 @@ interface TMenu extends TBase {
   imgUrl2: string
   price: number
   sellCount: number
-  options: TMenuOption[]
+  options?: TMenuOption[]
 }
 
 interface TCategory extends TBase {

@@ -51,7 +51,7 @@ const Page: React.FC<Props> = ({ menus }) => {
 
       <Modal visible={visible} onClose={handleInit}>
         <MenuInfoWrapper>
-          {selectedMenu ? (
+          {selectedMenu && selectedMenu.options ? (
             <>
               <Card
                 key={selectedMenu.id}

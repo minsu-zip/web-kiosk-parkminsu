@@ -25,7 +25,11 @@ const TabItem: React.FC<TProps> = ({
 
   return (
     <>
-      <TabItemWrapper data-id={id} onClick={onClickMenu} style={{ ...style }}>
+      <TabItemWrapper
+        data-id={id}
+        data-testid={`${id}menuComponent`}
+        onClick={onClickMenu}
+        style={{ ...style }}>
         {rank !== undefined ? <RankSpan>{rank + 1}위</RankSpan> : null}
         <Img src={imgUrl1} imgUrl2={imgUrl2 === '' ? imgUrl1 : imgUrl2}></Img>
         {!hideLabel && (

@@ -12,7 +12,7 @@ interface Props {
   menus: TMenu[]
 }
 
-const Page: React.FC<Props> = ({ menus }) => {
+const Main: React.FC<Props> = ({ menus }) => {
   const [selectedMenu, setSelectedMenu] = useState<TMenu | undefined>()
   const [visible, setVisible] = useState(false)
   const { addCart } = useCarts()
@@ -39,6 +39,7 @@ const Page: React.FC<Props> = ({ menus }) => {
 
   return (
     <>
+      <div data-testid={'main-test'} />
       <CardWrapper>
         {menus?.map((menu, index) => (
           <Card
@@ -48,7 +49,6 @@ const Page: React.FC<Props> = ({ menus }) => {
             rank={index}></Card>
         ))}
       </CardWrapper>
-
       <Modal visible={visible} onClose={handleInit}>
         <MenuInfoWrapper>
           {selectedMenu && selectedMenu.options ? (
@@ -90,4 +90,4 @@ const CardWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-export default Page
+export default Main

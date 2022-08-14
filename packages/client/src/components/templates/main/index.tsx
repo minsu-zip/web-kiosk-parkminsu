@@ -53,11 +53,7 @@ const Main: React.FC<Props> = ({ menus }) => {
         <MenuInfoWrapper>
           {selectedMenu && selectedMenu.options ? (
             <>
-              <Card
-                key={selectedMenu.id}
-                menu={selectedMenu}
-                onClickMenu={onClickMenu}
-              />
+              <Card key={selectedMenu.id} menu={selectedMenu} />
               <MenuOption
                 options={selectedMenu.options}
                 menuPrice={selectedMenu.price}

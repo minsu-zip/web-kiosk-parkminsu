@@ -9,7 +9,7 @@ import { theme } from 'utils/styles'
 interface Props {
   options: TMenuOption[]
   menuPrice: number
-  onClose: (data: TMenuInfo) => void
+  onClose: (data?: TMenuInfo) => void
 }
 
 interface SelectedProps {

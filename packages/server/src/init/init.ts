@@ -28,7 +28,7 @@ async function migrate() {
     category.name = mockCategory.name
     await dataSource.getRepository('category').save(category)
 
-    for (const mockItem of mockCategory.menu) {
+    for (const mockItem of mockCategory.menus) {
       const menu = new Menu()
       menu.name = mockItem.name
       menu.imgUrl1 = mockItem.imgUrl1

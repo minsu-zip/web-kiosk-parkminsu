@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "단백질 보충제",
-    "menu": [
+    "menus": [
       {
         "id": 1,
         "name": "임팩트 웨이 프로틴",
@@ -80,7 +80,7 @@
   {
     "id": 2,
     "name": "간식&식품",
-    "menu": [
+    "menus": [
       {
         "id": 10,
         "name": "프로틴 팝콘",
@@ -126,7 +126,7 @@
   {
     "id": 3,
     "name": "비타민",
-    "menu": [
+    "menus": [
       {
         "id": 15,
         "name": "데일리 멀티비타민",
@@ -164,7 +164,7 @@
   {
     "id": 4,
     "name": "부스터",
-    "menu": [
+    "menus": [
       {
         "id": 19,
         "name": "BCAA 가루",
@@ -202,20 +202,20 @@
   {
     "id": 5,
     "name": "민수와함께",
-    "menu": [
+    "menus": [
       {
         "id": 23,
         "name": "PT 이용권",
-        "imgUrl1": "https://ifh.cc/g/j87WCA.jpg",
-        "imgUrl2": "https://ifh.cc/g/NjBxRA.jpg",
+        "imgUrl1": "https://user-images.githubusercontent.com/52727782/184504480-76a5ad10-a623-447c-b7e1-622cbca17877.jpeg",
+        "imgUrl2": "https://user-images.githubusercontent.com/52727782/184504484-b8af29db-08d5-4cd6-b10f-1f521baf53e5.jpeg",
         "price": 40000,
         "sellCount": 4
       },
       {
         "id": 24,
         "name": "보조 이용권",
-        "imgUrl1": "https://ifh.cc/g/zCYN49.jpg",
-        "imgUrl2": "https://ifh.cc/g/QmVSJb.jpg",
+        "imgUrl1": "https://user-images.githubusercontent.com/52727782/184504488-d369db5c-2f2e-4e9c-a85f-6f9a56d29f6b.jpeg",
+        "imgUrl2": "https://user-images.githubusercontent.com/52727782/184504491-4c2de9b2-4063-4c16-9ff1-c90e38674bfa.jpeg",
         "price": 30000,
         "sellCount": 3
       }

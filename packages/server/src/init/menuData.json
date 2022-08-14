@@ -52,7 +52,7 @@
       {
         "id": 1,
         "name": "맛",
-        "detail": [
+        "details": [
           {
             "id": 1,
             "name": "초코 맛",
@@ -68,7 +68,7 @@
       {
         "id": 2,
         "name": "사이즈",
-        "detail": [
+        "details": [
           {
             "id": 3,
             "name": "5kg",
